@@ -1,0 +1,25 @@
+{
+  "updatedAt": "2025-12-29T13:18:54.271Z",
+  "curseforge": [
+    {
+      "name": "Structures Loots Are OP (Now Achievement Support!!)",
+      "summary": "This addon changes the loots of the naturally occuring structures to op loots all the while giving survival a fun experience",
+      "url": "https://www.curseforge.com/minecraft-bedrock/addons/structures-loot-are-op",
+      "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1329/784/256/256/638864420529445174.png",
+      "downloadCount": 73056,
+      "categories": [
+        "Data Packs"
+      ]
+    }
+  ],
+  "github": [
+    {
+      "name": "gamerfile.github.io",
+      "summary": "website",
+      "url": "https://github.com/GamerFile/gamerfile.github.io",
+      "stars": 0,
+      "language": "HTML",
+      "updatedAt": "2025-12-29T12:11:25Z"
+    }
+  ]
+}
