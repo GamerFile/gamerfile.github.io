@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-12-29T13:18:54.271Z",
+  "updatedAt": "2025-12-29T13:33:28.182Z",
   "curseforge": [
     {
       "name": "Structures Loots Are OP (Now Achievement Support!!)",
@@ -7,6 +7,26 @@
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/structures-loot-are-op",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1329/784/256/256/638864420529445174.png",
       "downloadCount": 73056,
+      "categories": [
+        "Data Packs"
+      ]
+    },
+    {
+      "name": "WarPads Classic",
+      "summary": "It allows you to warp instantly to any saved destination, even if it's in another dimension.  Yes—you read that right. Nether, End, Overworld—all just one block away. ",
+      "url": "https://www.curseforge.com/minecraft-bedrock/addons/warpads-classic",
+      "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1349/177/256/256/638876640333157454.png",
+      "downloadCount": 1767,
+      "categories": [
+        "Data Packs"
+      ]
+    },
+    {
+      "name": "Fishing Is Op(Now Achievement Support!!)",
+      "summary": "Turn peaceful fishing into power-farming! In this addon, every time you cast your fishing rod, you’re pulling out more than just fish — you’re reeling in OP loot that can help you beat the Ender Dragon without breaking a sweat.",
+      "url": "https://www.curseforge.com/minecraft-bedrock/addons/fishing-is-op",
+      "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1354/219/256/256/638879909666208781.png",
+      "downloadCount": 53632,
       "categories": [
         "Data Packs"
       ]

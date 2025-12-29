@@ -1,14 +1,26 @@
+/* Global Variables */
+:root {
+  --primary-color: #00ff00;
+  --bg-dark: #0a0a0a;
+  --glass-bg: rgba(25, 25, 25, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --font-display: 'Press Start 2P', cursive;
+  --font-body: 'Inter', sans-serif;
+}
+
 /* Reset & Base */
 body {
   margin: 0;
-  font-family: 'Press Start 2P', cursive;
-  background: black; /* Fallback */
-  color: #fff;
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
   min-height: 100vh;
-  text-shadow: 2px 2px #000;
+  line-height: 1.6;
 }
 
-/* Background Image Handling */
+/* Background Image (Darkened) */
 .bg-wrapper {
   position: fixed;
   top: 0;
@@ -18,77 +30,218 @@ body {
   z-index: -1;
   background: url('/cdn/site/image.png') no-repeat center center;
   background-size: cover;
-  opacity: 0.8; /* Slight dim for readability */
+  filter: brightness(0.4) blur(3px);
+  /* Darker and blurred for focus on content */
+  transform: scale(1.05);
+  /* Prevent blur edges */
 }
 
-/* Typography */
-h1, h2, h3 {
+/* Typography Overrides */
+h1,
+h2,
+h3 {
   margin: 0;
+  font-weight: 700;
+  color: #fff;
 }
-h1 { font-size: 2rem; }
-a { color: #00ff00; text-decoration: none; }
-a:hover { text-decoration: underline; }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  text-shadow: 0 0 10px var(--primary-color);
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+a:hover {
+  text-decoration: none;
+  filter: brightness(1.2);
+}
 
 /* Header */
 header {
-  background-color: rgba(0, 0, 0, 0.85);
-  padding: 1.5rem;
-  text-align: center;
-  border-bottom: 2px solid #00ff00;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-nav { margin-top: 1rem; }
-nav a { margin: 0 1rem; font-size: 0.8rem; }
+
+header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  margin: 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
 /* Layout */
 .content {
-  padding: 2rem;
-  max-width: 1000px; /* Wider for grid */
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
   margin: auto;
 }
 
-/* Buttons */
-.btn {
-  background: #00ff00;
-  color: black;
-  padding: 0.5rem 1rem;
-  display: inline-block;
-  border: none;
-  border-radius: 0;
-  font-weight: bold;
-  box-shadow: 4px 4px #000;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-.btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px #000;
+/* Section Spacing */
+section {
+  margin-bottom: 4rem;
 }
 
 /* Grid for Projects */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: 1fr;
+  /* Default single column for list view */
+  gap: 1.5rem;
 }
 
+/* PRO CARDS (Glassmorphism) */
 .card {
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #00ff00;
-  padding: 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: row;
+  /* Horizontal Layout */
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  height: 200px;
+  /* Fixed height for consistency */
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.1);
+  border-color: rgba(0, 255, 0, 0.3);
+}
+
+/* Thumbnail Area */
+.card-thumb {
+  width: 200px;
+  /* Fixed width */
+  flex-shrink: 0;
+  background: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-thumb img {
+  transform: scale(1.1);
+}
+
+/* Content Area */
+.card-content {
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
-.card h3 { color: #00ff00; margin-bottom: 0.5rem; font-size: 1.2rem; }
-.card p { font-size: 0.8rem; line-height: 1.5; flex-grow: 1; }
-.card-meta { font-size: 0.7rem; color: #888; margin-bottom: 1rem; }
-.card-actions { margin-top: 1rem; }
+
+.card h3 {
+  font-family: var(--font-body);
+  /* Clean font for titles */
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* Limit text lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Buttons */
+.btn {
+  background: transparent;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  align-self: flex-start;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: var(--primary-color);
+  color: #000;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card-thumb {
+    width: 100%;
+    height: 180px;
+  }
+}
 
 /* Loading State */
 .loading {
   text-align: center;
-  padding: 2rem;
-  color: #00ff00;
-  animation: blink 1s infinite;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
 }
-@keyframes blink { 50% { opacity: 0; } }

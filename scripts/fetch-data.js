@@ -5,6 +5,13 @@ const CF_AUTHOR_ID = 128734167;
 const CF_AUTHOR_API_URL = `https://api.cfwidget.com/author/${CF_AUTHOR_ID}`;
 const GH_USERNAME = 'GamerFile';
 
+// Manual list of Project IDs to validly fetch if the Author endpoint misses them
+const FORCE_PROJECT_IDS = [
+    1293994, // Structures Loot
+    1303419, // WarPads Classic
+    1305843  // Fishing Is Op
+];
+
 async function fetchProjectDetails(projectId) {
     try {
         const response = await fetch(`https://api.cfwidget.com/${projectId}`);
@@ -17,32 +24,39 @@ async function fetchProjectDetails(projectId) {
 
 async function fetchCurseForgeProjects() {
     console.log(`Fetching CurseForge projects for Author ID ${CF_AUTHOR_ID}...`);
-    try {
-        const response = await fetch(CF_AUTHOR_API_URL);
+    let projectsMap = new Map();
 
-        if (!response.ok) {
-            throw new Error(`CFWidget API Error: ${response.status} ${response.statusText}`);
+    try {
+        // 1. Try Dynamic Author Fetch
+        const response = await fetch(CF_AUTHOR_API_URL);
+        if (response.ok) {
+            const data = await response.json();
+            const dynamicList = data.projects || [];
+            dynamicList.forEach(p => projectsMap.set(p.id, p.id));
+        } else {
+            console.warn("Dynamic author fetch failed, relying on manual list.");
         }
 
-        const data = await response.json();
-        const projectList = data.projects || [];
+        // 2. Add Forced IDs
+        FORCE_PROJECT_IDS.forEach(id => projectsMap.set(id, id));
 
-        console.log(`Found ${projectList.length} projects. Fetching details...`);
+        const projectIds = Array.from(projectsMap.values());
+        console.log(`Fetching details for ${projectIds.length} projects...`);
 
-        // Fetch details for each project to get full metadata (slugs, downloads, etc)
+        // 3. Fetch Full Details
         const detailedProjects = await Promise.all(
-            projectList.map(async (p) => {
-                const details = await fetchProjectDetails(p.id);
+            projectIds.map(async (id) => {
+                const details = await fetchProjectDetails(id);
                 if (!details) return null;
                 return details;
             })
         );
 
-        return detailedProjects.filter(p => p !== null).map(mod => ({
+        const validProjects = detailedProjects.filter(p => p !== null && !p.error);
+
+        return validProjects.map(mod => ({
             name: mod.title || mod.name,
             summary: mod.summary || mod.description || "No description available.",
-            // CFWidget usually provides a 'urls' object or we construct it.
-            // Based on typical response:
             url: mod.urls?.curseforge || `https://www.curseforge.com/minecraft/mc-mods/${mod.slug}`,
             thumbnail: mod.thumbnail,
             downloadCount: mod.downloads ? mod.downloads.total : 0,
