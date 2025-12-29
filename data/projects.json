@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2025-12-29T13:33:28.182Z",
+  "updatedAt": "2025-12-29T13:53:33.663Z",
   "curseforge": [
     {
       "name": "Structures Loots Are OP (Now Achievement Support!!)",
@@ -38,8 +38,8 @@
       "summary": "website",
       "url": "https://github.com/GamerFile/gamerfile.github.io",
       "stars": 0,
-      "language": "HTML",
-      "updatedAt": "2025-12-29T12:11:25Z"
+      "language": "JavaScript",
+      "updatedAt": "2025-12-29T13:53:14Z"
     }
   ]
 }
