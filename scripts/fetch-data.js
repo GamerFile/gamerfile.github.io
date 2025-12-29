@@ -9,7 +9,13 @@ const GH_USERNAME = 'GamerFile';
 const FORCE_PROJECT_IDS = [
     1293994, // Structures Loot
     1303419, // WarPads Classic
-    1305843  // Fishing Is Op
+    1305843, // Fishing Is Op
+    1327197, // Nytheris
+    1319919, // Sand Drops Op
+    1297324, // Leaves Drop Op
+    1292659, // Damage Drops Op
+    1299386, // FunTools Addon
+    1321423  // Everything You Look Disappears
 ];
 
 async function fetchProjectDetails(projectId) {
