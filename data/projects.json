@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-05-30T02:15:03.719Z",
+  "updatedAt": "2026-05-31T02:41:09.177Z",
   "curseforge": [
     {
       "name": "Structures Loots Are OP (Now Achievement Support!!)",
       "summary": "This addon changes the loots of the naturally occuring structures to op loots all the while giving survival a fun experience",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/structures-loot-are-op",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1329/784/256/256/638864420529445174.png",
-      "downloadCount": 140849,
+      "downloadCount": 140932,
       "categories": [
         "Data Packs"
       ]
@@ -26,7 +26,7 @@
       "summary": "Turn peaceful fishing into power-farming! In this addon, every time you cast your fishing rod, you’re pulling out more than just fish — you’re reeling in OP loot that can help you beat the Ender Dragon without breaking a sweat.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/fishing-is-op",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1354/219/256/256/638879909666208781.png",
-      "downloadCount": 106189,
+      "downloadCount": 106245,
       "categories": [
         "Data Packs"
       ]
@@ -36,7 +36,7 @@
       "summary": "Master a sentient, jealous blade that rewards loyalty with devastating physics-based combat skills.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/nytheris-the-jealous-relic",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1582/135/256/256/639024283357001285.jpg",
-      "downloadCount": 7359,
+      "downloadCount": 7367,
       "categories": [
         "Fantasy"
       ]
@@ -56,7 +56,7 @@
       "summary": "In this chaotic, overpowered addon, breaking a simple sand block — yes, just sand — with a shovel, silk touch, or even bare hands, will reward you with insanely OP loot.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/sand-drops-op-item",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1384/936/256/256/638898196910657514.png",
-      "downloadCount": 30273,
+      "downloadCount": 30298,
       "categories": [
         "Data Packs"
       ]
@@ -76,7 +76,7 @@
       "summary": "In This Addon Taking Damage Will Drop Op Item Made By GamerFile Made for everyone who wants to play minecraft as a challenge and defeat the dragon or complete other goals. So go download the addon and enjoy.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/damage-drops-op-item",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1327/159/256/256/638862737866528653.png",
-      "downloadCount": 34140,
+      "downloadCount": 34163,
       "categories": [
         "Data Packs"
       ]
@@ -99,7 +99,7 @@
       "url": "https://github.com/GamerFile/gamerfile.github.io",
       "stars": 0,
       "language": "JavaScript",
-      "updatedAt": "2026-05-29T02:31:26Z"
+      "updatedAt": "2026-05-30T02:15:09Z"
     }
   ]
 }
