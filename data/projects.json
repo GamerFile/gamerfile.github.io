@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-06-26T02:35:40.168Z",
+  "updatedAt": "2026-06-27T02:28:59.500Z",
   "curseforge": [
     {
       "name": "Structures Loots Are OP (Now Achievement Support!!)",
       "summary": "This addon changes the loots of the naturally occuring structures to op loots all the while giving survival a fun experience",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/structures-loot-are-op",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1329/784/256/256/638864420529445174.png",
-      "downloadCount": 152922,
+      "downloadCount": 153507,
       "categories": [
         "Data Packs"
       ]
@@ -16,7 +16,7 @@
       "summary": "It allows you to warp instantly to any saved destination, even if it's in another dimension.  Yes—you read that right. Nether, End, Overworld—all just one block away. ",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/warpads-classic",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1349/177/256/256/638876640333157454.png",
-      "downloadCount": 2062,
+      "downloadCount": 2069,
       "categories": [
         "Data Packs"
       ]
@@ -26,7 +26,7 @@
       "summary": "Turn peaceful fishing into power-farming! In this addon, every time you cast your fishing rod, you’re pulling out more than just fish — you’re reeling in OP loot that can help you beat the Ender Dragon without breaking a sweat.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/fishing-is-op",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1354/219/256/256/638879909666208781.png",
-      "downloadCount": 114325,
+      "downloadCount": 114704,
       "categories": [
         "Data Packs"
       ]
@@ -36,7 +36,7 @@
       "summary": "Master a sentient, jealous blade that rewards loyalty with devastating physics-based combat skills.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/nytheris-the-jealous-relic",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1582/135/256/256/639024283357001285.jpg",
-      "downloadCount": 7650,
+      "downloadCount": 7661,
       "categories": [
         "Fantasy"
       ]
@@ -46,7 +46,7 @@
       "summary": "This addon transforms Minecraft into an OP loot fest—breaking leaves with shears or Silk Touch now gives you crazy powerful items! From armor to rare blocks, you'll have everything you need to beat the game easily, right from the start.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/leaves-drop-op-item",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1336/535/256/256/638868858971011949.png",
-      "downloadCount": 31967,
+      "downloadCount": 32113,
       "categories": [
         "Data Packs"
       ]
@@ -56,7 +56,7 @@
       "summary": "In this chaotic, overpowered addon, breaking a simple sand block — yes, just sand — with a shovel, silk touch, or even bare hands, will reward you with insanely OP loot.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/sand-drops-op-item",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1384/936/256/256/638898196910657514.png",
-      "downloadCount": 33631,
+      "downloadCount": 33795,
       "categories": [
         "Data Packs"
       ]
@@ -66,7 +66,7 @@
       "summary": "Welcome to the ultimate power trip for Minecraft Bedrock – this addon takes \"look to kill\" to a whole new level. With it enabled, everything you directly look at disappears — blocks get broken, entities vanish",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/everything-you-look-disappears",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1388/114/256/256/638900066694754372.png",
-      "downloadCount": 677,
+      "downloadCount": 682,
       "categories": [
         "Data Packs"
       ]
@@ -76,7 +76,7 @@
       "summary": "In This Addon Taking Damage Will Drop Op Item Made By GamerFile Made for everyone who wants to play minecraft as a challenge and defeat the dragon or complete other goals. So go download the addon and enjoy.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/damage-drops-op-item",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1327/159/256/256/638862737866528653.png",
-      "downloadCount": 37963,
+      "downloadCount": 38144,
       "categories": [
         "Data Packs"
       ]
@@ -86,7 +86,7 @@
       "summary": "It is an admin tools addon giving you access to a variety of powerful utilities—all through GUI. Whether you're handling a server, managing a chaotic multiplayer world, or just want to have fun, these tools are built to give you instant control with ease.",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/funtools-addon-gui",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1340/752/256/256/638871524413604589.png",
-      "downloadCount": 4247,
+      "downloadCount": 4278,
       "categories": [
         "Data Packs"
       ]
@@ -99,7 +99,7 @@
       "url": "https://github.com/GamerFile/gamerfile.github.io",
       "stars": 0,
       "language": "JavaScript",
-      "updatedAt": "2026-06-25T02:33:19Z"
+      "updatedAt": "2026-06-26T02:35:46Z"
     }
   ]
 }
