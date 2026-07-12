@@ -15,7 +15,11 @@ const FORCE_PROJECT_IDS = [
     1297324, // Leaves Drop Op
     1292659, // Damage Drops Op
     1299386, // FunTools Addon
-    1321423  // Everything You Look Disappears
+    1321423, // Everything You Look Disappears
+    1492877, // File's Ultimine
+    1435129, // Minions
+    1435129, // Hitbox Visualiser
+    1313993  // Trapify
 ];
 
 async function fetchProjectDetails(projectId) {
