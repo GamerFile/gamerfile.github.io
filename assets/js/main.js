@@ -194,13 +194,7 @@ function renderError(container, message) {
 }
 
 function renderCertCard(cert) {
-  const hasLink = Boolean(cert.url);
-  const card = el(hasLink ? 'a' : 'div', 'cert');
-  if (hasLink) {
-    card.href = cert.url;
-    card.target = '_blank';
-    card.rel = 'noopener noreferrer';
-  }
+  const card = el('div', 'cert');
 
   const thumb = el('div', 'cert-thumb');
   const img = document.createElement('img');
@@ -219,8 +213,10 @@ function renderCertCard(cert) {
   caption.append(el('p', 'comment', `// ${cert.title || 'certificate'}`));
   if (cert.issuer) caption.append(row('issuer', 'str', `"${cert.issuer}"`));
   if (cert.date) caption.append(row('issued', 'str', `"${cert.date}"`));
+  caption.append(detailHint());
   card.append(caption);
 
+  makeExpandable(card, () => openCertModal(cert));
   return card;
 }
 
@@ -290,6 +286,42 @@ function externalLinkBar(url, label) {
   a.rel = 'noopener noreferrer';
   bar.append(a);
   return bar;
+}
+
+function openCertModal(cert) {
+  openModal(`${truncate(cert.title || 'certificate', 46)}`);
+
+  const imgWrap = el('div', 'cert-modal-image');
+  if (cert.image) {
+    const img = document.createElement('img');
+    img.src = cert.image;
+    img.alt = cert.title || 'certificate';
+    img.addEventListener('error', () => {
+      img.remove();
+      imgWrap.classList.add('cert-thumb-empty');
+      imgWrap.append(el('span', 'cert-fallback', 'image not found'));
+    });
+    imgWrap.append(img);
+  } else {
+    imgWrap.classList.add('cert-thumb-empty');
+    imgWrap.append(el('span', 'cert-fallback', 'no image provided'));
+  }
+  modalBody.append(imgWrap);
+
+  modalBody.append(el('p', 'comment modal-section-label', '// details'));
+  const meta = el('div', 'proj modal-meta');
+  meta.append(el('span', 'brace', '{'));
+  meta.append(row('title', 'str', `"${cert.title || 'certificate'}"`));
+  const issuerRow = metaRow('issuer', cert.issuer);
+  if (issuerRow) meta.append(issuerRow);
+  const dateRow = metaRow('issued', cert.date);
+  if (dateRow) meta.append(dateRow);
+  meta.append(el('span', 'brace', '}'));
+  modalBody.append(meta);
+
+  if (cert.url) {
+    modalBody.append(externalLinkBar(cert.url, 'Verify credential'));
+  }
 }
 
 function openCfModal(project) {
