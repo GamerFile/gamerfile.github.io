@@ -18,7 +18,7 @@ const FORCE_PROJECT_IDS = [
     1321423, // Everything You Look Disappears
     1492877, // File's Ultimine
     1435129, // Minions
-    1435129, // Hitbox Visualiser
+    1415819, // Hitbox Visualiser
     1313993  // Trapify
 ];
 
@@ -66,16 +66,46 @@ async function fetchCurseForgeProjects() {
 
         return validProjects.map(mod => ({
             name: mod.title || mod.name,
-            summary: mod.summary || mod.description || "No description available.",
+            summary: mod.summary || "No description available.",
+            description: mod.description || "",
             url: mod.urls?.curseforge || `https://www.curseforge.com/minecraft/mc-mods/${mod.slug}`,
             thumbnail: mod.thumbnail,
             downloadCount: mod.downloads ? mod.downloads.total : 0,
-            categories: mod.categories || []
+            monthlyDownloads: mod.downloads ? mod.downloads.monthly : 0,
+            categories: mod.categories || [],
+            type: mod.type || null,
+            license: mod.license || null,
+            createdAt: mod.created_at || null,
+            // Most recent 5 release files, newest first
+            files: (mod.files || [])
+                .slice()
+                .sort((a, b) => new Date(b.uploaded_at) - new Date(a.uploaded_at))
+                .slice(0, 5)
+                .map(f => ({
+                    name: f.display || f.name,
+                    version: f.version,
+                    downloads: f.downloads,
+                    filesize: f.filesize,
+                    uploadedAt: f.uploaded_at
+                }))
         }));
 
     } catch (error) {
         console.error("❌ Failed to fetch CurseForge:", error.message);
         return [];
+    }
+}
+
+async function fetchReadmeHtml(repoName) {
+    try {
+        const response = await fetch(`https://api.github.com/repos/${GH_USERNAME}/${repoName}/readme`, {
+            headers: { Accept: 'application/vnd.github.html+json' }
+        });
+        if (!response.ok) return null; // 404 = no README, don't treat as fatal
+        return await response.text();
+    } catch (e) {
+        console.error(`Failed to fetch README for ${repoName}: ${e.message}`);
+        return null;
     }
 }
 
@@ -91,13 +121,26 @@ async function fetchGitHubRepos() {
         const repos = await response.json();
         const myRepos = repos.filter(repo => !repo.fork);
 
-        return myRepos.map(repo => ({
+        console.log(`Fetching README files for ${myRepos.length} repos...`);
+        const readmes = await Promise.all(myRepos.map(repo => fetchReadmeHtml(repo.name)));
+
+        return myRepos.map((repo, i) => ({
             name: repo.name,
             summary: repo.description,
             url: repo.html_url,
             stars: repo.stargazers_count,
             language: repo.language,
-            updatedAt: repo.updated_at
+            updatedAt: repo.updated_at,
+            createdAt: repo.created_at,
+            forks: repo.forks_count,
+            openIssues: repo.open_issues_count,
+            watchers: repo.watchers_count,
+            size: repo.size,
+            defaultBranch: repo.default_branch,
+            license: repo.license ? repo.license.name : null,
+            topics: repo.topics || [],
+            homepage: repo.homepage || null,
+            readme: readmes[i]
         }));
 
     } catch (error) {
