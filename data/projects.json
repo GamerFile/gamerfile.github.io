@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-19T11:55:27.243Z",
+  "updatedAt": "2026-07-19T12:09:13.751Z",
   "curseforge": [
     {
       "name": "Structures Loots Are OP (Now Achievement Support!!)",
@@ -370,7 +370,7 @@
       "description": "<h1>⛏️ File&rsquo;s Ultimine &ndash; Destroy Blocks Faster Than Ever&nbsp;</h1>\n<p>Break multiple blocks instantly &mdash; tunnels, 3x3 mining, and vein mining all in one addon.</p>\n<p>Inspired by the popular <a href=\"https://www.curseforge.com/minecraft/mc-mods/ftb-ultimine-forge\" target=\"_blank\" rel=\"nofollow\">FTB Ultimine mod</a>, now in Minecraft Bedrock.<br><br><br></p>\n<h3><strong>This addon <span style=\"color:#2dc26b\">support Achievements</span> and is <span style=\"color:#f1c40f\">Survival Friendly</span>.</strong></h3>\n<hr>\n<h2>🎥 Showcase</h2>\n<p>Here&rsquo;s what the addon looks like in action 👇</p>\n<ul>\n<li>⛏️ Mining 64 blocks in one click</li>\n<li>🟨 3x3 mining tunnels</li>\n<li>🟦 Vein mining ores instantly</li>\n<li>👁️ Real-time block highlight preview</li>\n<li>⚡ Smooth and satisfying mining</li>\n</ul>\n<blockquote>\n<p>💡 Tip: The highlight system shows EXACTLY what will break before you mine.</p>\n</blockquote>\n<p>📸</p>\n<p><img src=\"https://media.forgecdn.net/attachments/description/1492877/description_aa08b338-f441-4ca4-b2fc-04399ca80ecb.png\" alt=\"\" width=\"850\" height=\"477\"></p>\n<p><img src=\"https://media.forgecdn.net/attachments/description/1492877/description_6e41908c-eb57-43c6-8f04-6b4e205bd742.png\" alt=\"\" width=\"850\" height=\"477\"></p>\n<p>&nbsp;</p>\n<p><img src=\"https://gamerfile.github.io/cdn/addons/ultimine/shapeless.gif\" alt=\"\" width=\"1080\" height=\"607\"></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p><span><span><iframe src=\"https://www.youtube.com/embed/hvlUiJilihI\" width=\"560\" height=\"314\" allowfullscreen=\"allowfullscreen\"></iframe></span></span></p>\n<hr>\n<h2>🧭 What is This Addon?</h2>\n<p>File&rsquo;s Ultimine brings <strong>Ultimine-style mining mechanics</strong> to Bedrock Edition.</p>\n<p>Instead of breaking blocks one by one, this addon lets you mine <strong>entire groups at once</strong> &mdash; whether it's ores, tunnels, or full mining patterns.</p>\n<p>Perfect for survival, grinding, or just making mining feel insanely satisfying.</p>\n<hr>\n<h2>🧰 How to Use</h2>\n<ol>\n<li>Sneak &rarr; Un-sneak &rarr; Sneak again</li>\n<li>Ultimine activates 🔥</li>\n<li>Switch hotbar slots to change mining modes</li>\n<li>Look at a block to preview the area</li>\n<li>Break once&hellip; and everything goes 💥</li>\n</ol>\n<blockquote>\n<p>⚡ Tip: Different hotbar slots = different mining shapes</p>\n<p><img src=\"https://gamerfile.github.io/cdn/addons/ultimine/choose.gif\" alt=\"\" width=\"1281\" height=\"720\"></p>\n</blockquote>\n<hr>\n<h2>🔥 Mining Modes</h2>\n<ul>\n<li>🟦 Shapeless (Vein Mining)</li>\n<li>🟧 Small Tunnel</li>\n<li>🟨 3x3 Mining</li>\n<li>🟥 Large Tunnel (3x3)</li>\n<li>⛏️ Mining Tunnel</li>\n<li>🚪 Escape Tunnel</li>\n</ul>\n<hr>\n<h2>⚙️ Features</h2>\n<ul>\n<li>⛏️ Mine up to <strong>64 blocks at once</strong></li>\n<li>👁️ Real-time <strong>highlight preview system</strong></li>\n<li>🎯 Smart block detection</li>\n<li>⚡ Works with <strong>Fortune &amp; Silk Touch</strong></li>\n<li>🍗 Hunger-based balancing</li>\n<li>🧠 Intelligent tool + block matching</li>\n</ul>\n<hr>\n<h2>📝 Notes</h2>\n<ul>\n<li>Works in survival &amp; creative</li>\n<li>Requires hunger to activate</li>\n<li>Some blocks depend on tool type</li>\n<li><del><span style=\"color:#e03e2d\"><strong>Must Turn On Beta APIs for it to work.</strong></span></del></li>\n</ul>\n<blockquote>\n<p>💡 Optimized for smooth performance</p>\n</blockquote>\n<hr>\n<h2>❗ Terms of Use</h2>\n<ul>\n<li>❌ Do NOT reupload or redistribute</li>\n<li>❌ Do NOT rebrand or claim as your own</li>\n<li>✅ You may use in videos with credit</li>\n</ul>\n<hr>\n<h2>✉️ Feedback &amp; Support</h2>\n<p>Found a bug or got ideas?<br>Drop them in the comments 💬</p>\n<hr>\n<h2>✅ Final Words</h2>\n<p>Mining will never feel the same again.</p>\n<p>Once you use Ultimine&hellip; you&rsquo;re not going back.</p>",
       "url": "https://www.curseforge.com/minecraft-bedrock/addons/files-ultimine-vein-mining-3x3-mining",
       "thumbnail": "https://media.forgecdn.net/avatars/thumbnails/1725/736/256/256/639097995897285260.png",
-      "downloadCount": 71873,
+      "downloadCount": 71887,
       "monthlyDownloads": 0,
       "categories": [
         "Utility"
@@ -553,7 +553,7 @@
       "url": "https://github.com/GamerFile/gamerfile.github.io",
       "stars": 0,
       "language": "JavaScript",
-      "updatedAt": "2026-07-19T01:53:20Z",
+      "updatedAt": "2026-07-19T12:08:54Z",
       "createdAt": "2025-07-13T07:29:44Z",
       "forks": 0,
       "openIssues": 0,
