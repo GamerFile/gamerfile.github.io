@@ -133,6 +133,24 @@ a {
 .tab-icon {
   color: var(--purple);
   font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* The modal's tab isn't part of a scrollable tab-strip like the desktop
+   editor's tabs are, so — unlike those — it needs to be allowed to shrink
+   and truncate a long project/repo/certificate name instead of forcing
+   the titlebar (and the whole modal) wider than the screen. */
+.modal .tab {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+#modal-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .tab-label {
