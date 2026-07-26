@@ -481,6 +481,52 @@ function tabDotClass(type) {
   return 'dot-md';
 }
 
+function renderSidebarTree() {
+  ['cf', 'gh', 'cert'].forEach((type) => {
+    const container = document.getElementById(`tree-children-${type}`);
+    if (!container) return;
+    container.innerHTML = '';
+
+    openTabsState
+      .filter((tab) => tab.type === type)
+      .forEach((tab) => {
+        const item = el('div', 'file-child' + (tab.id === activeTabId ? ' active' : ''));
+        item.dataset.tabId = tab.id;
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+
+        item.append(el('span', `file-dot ${tabDotClass(tab.type)}`));
+        item.append(el('span', 'file-child-label', tab.label));
+
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.className = 'file-child-close';
+        close.textContent = '✕';
+        close.setAttribute('aria-label', `Close ${tab.label}`);
+        close.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeTab(tab.id);
+        });
+        item.append(close);
+
+        item.addEventListener('click', () => setActiveTab(tab.id));
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setActiveTab(tab.id);
+          }
+        });
+
+        container.append(item);
+      });
+  });
+}
+
+function renderOpenTabsUI() {
+  renderTabStrip();
+  renderSidebarTree();
+}
+
 function handleExpand(type, data) {
   if (isDesktopViewport()) {
     openDetailTab(type, data);
@@ -503,7 +549,7 @@ function openDetailTab(type, data) {
 
 function setActiveTab(id) {
   activeTabId = id;
-  renderTabStrip();
+  renderOpenTabsUI();
   showPane(id);
 
   const activeEl = id === 'profile' ? profileTabEl : tabStrip.querySelector(`[data-tab-id="${CSS.escape(id)}"]`);
@@ -520,7 +566,7 @@ function closeTab(id) {
     const fallback = openTabsState[idx - 1] || openTabsState[0];
     setActiveTab(fallback ? fallback.id : 'profile');
   } else {
-    renderTabStrip();
+    renderOpenTabsUI();
   }
 }
 
