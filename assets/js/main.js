@@ -125,7 +125,7 @@ function renderCurseForgeCard(project) {
   card.append(el('span', 'brace', '}'));
   card.append(detailHint());
 
-  makeExpandable(card, () => openCfModal(project));
+  makeExpandable(card, () => handleExpand('cf', project));
   return card;
 }
 
@@ -148,7 +148,7 @@ function renderGitHubCard(repo) {
   card.append(el('span', 'brace', '}'));
   card.append(detailHint());
 
-  makeExpandable(card, () => openGhModal(repo));
+  makeExpandable(card, () => handleExpand('gh', repo));
   return card;
 }
 
@@ -216,7 +216,7 @@ function renderCertCard(cert) {
   caption.append(detailHint());
   card.append(caption);
 
-  makeExpandable(card, () => openCertModal(cert));
+  makeExpandable(card, () => handleExpand('cert', cert));
   return card;
 }
 
@@ -288,8 +288,8 @@ function externalLinkBar(url, label) {
   return bar;
 }
 
-function openCertModal(cert) {
-  openModal(`${truncate(cert.title || 'certificate', 46)}`);
+function buildCertDetail(cert) {
+  const frag = document.createDocumentFragment();
 
   const imgWrap = el('div', 'cert-modal-image');
   if (cert.image) {
@@ -306,9 +306,9 @@ function openCertModal(cert) {
     imgWrap.classList.add('cert-thumb-empty');
     imgWrap.append(el('span', 'cert-fallback', 'no image provided'));
   }
-  modalBody.append(imgWrap);
+  frag.append(imgWrap);
 
-  modalBody.append(el('p', 'comment modal-section-label', '// details'));
+  frag.append(el('p', 'comment modal-section-label', '// details'));
   const meta = el('div', 'proj modal-meta');
   meta.append(el('span', 'brace', '{'));
   meta.append(row('title', 'str', `"${cert.title || 'certificate'}"`));
@@ -317,15 +317,22 @@ function openCertModal(cert) {
   const dateRow = metaRow('issued', cert.date);
   if (dateRow) meta.append(dateRow);
   meta.append(el('span', 'brace', '}'));
-  modalBody.append(meta);
+  frag.append(meta);
 
   if (cert.url) {
-    modalBody.append(externalLinkBar(cert.url, 'Verify credential'));
+    frag.append(externalLinkBar(cert.url, 'Verify credential'));
   }
+
+  return frag;
 }
 
-function openCfModal(project) {
-  openModal(`${truncate(project.name, 46)}.md`);
+function openCertModal(cert) {
+  openModal(`${truncate(cert.title || 'certificate', 46)}`);
+  modalBody.append(buildCertDetail(cert));
+}
+
+function buildCfDetail(project) {
+  const frag = document.createDocumentFragment();
 
   const meta = el('div', 'proj modal-meta');
   meta.append(el('span', 'brace', '{'));
@@ -343,19 +350,19 @@ function openCfModal(project) {
     meta.append(categoryRow(project.categories));
   }
   meta.append(el('span', 'brace', '}'));
-  modalBody.append(meta);
+  frag.append(meta);
 
-  modalBody.append(el('p', 'comment modal-section-label', '// description'));
+  frag.append(el('p', 'comment modal-section-label', '// description'));
   const desc = el('div', 'md-body');
   if (project.description) {
     desc.innerHTML = sanitizeHtml(project.description);
   } else {
     desc.append(el('p', null, project.summary || 'No description available.'));
   }
-  modalBody.append(desc);
+  frag.append(desc);
 
   if (project.files && project.files.length) {
-    modalBody.append(el('p', 'comment modal-section-label', '// recent releases'));
+    frag.append(el('p', 'comment modal-section-label', '// recent releases'));
     const list = el('div', 'file-list');
     project.files.forEach((f) => {
       const item = el('div', 'file-row');
@@ -370,14 +377,20 @@ function openCfModal(project) {
       item.append(el('span', 'file-meta', metaBits.join(' · ')));
       list.append(item);
     });
-    modalBody.append(list);
+    frag.append(list);
   }
 
-  modalBody.append(externalLinkBar(project.url, 'View on CurseForge'));
+  frag.append(externalLinkBar(project.url, 'View on CurseForge'));
+  return frag;
 }
 
-function openGhModal(repo) {
-  openModal(`${truncate(repo.name, 46)}.md`);
+function openCfModal(project) {
+  openModal(`${truncate(project.name, 46)}.md`);
+  modalBody.append(buildCfDetail(project));
+}
+
+function buildGhDetail(repo) {
+  const frag = document.createDocumentFragment();
 
   const meta = el('div', 'proj modal-meta');
   meta.append(el('span', 'brace', '{'));
@@ -399,18 +412,18 @@ function openGhModal(repo) {
     meta.append(categoryRow(repo.topics));
   }
   meta.append(el('span', 'brace', '}'));
-  modalBody.append(meta);
+  frag.append(meta);
 
-  modalBody.append(el('p', 'comment modal-section-label', '// description'));
+  frag.append(el('p', 'comment modal-section-label', '// description'));
   const desc = el('div', 'md-body');
   desc.append(el('p', null, repo.summary || 'No description available.'));
-  modalBody.append(desc);
+  frag.append(desc);
 
   if (repo.readme) {
-    modalBody.append(el('p', 'comment modal-section-label', '// readme.md'));
+    frag.append(el('p', 'comment modal-section-label', '// readme.md'));
     const readme = el('div', 'md-body');
     readme.innerHTML = sanitizeHtml(repo.readme);
-    modalBody.append(readme);
+    frag.append(readme);
   }
 
   const links = el('div', 'modal-link-bar');
@@ -426,8 +439,181 @@ function openGhModal(repo) {
     homeLink.rel = 'noopener noreferrer';
     links.append(homeLink);
   }
-  modalBody.append(links);
+  frag.append(links);
+
+  return frag;
 }
+
+function openGhModal(repo) {
+  openModal(`${truncate(repo.name, 46)}.md`);
+  modalBody.append(buildGhDetail(repo));
+}
+
+/* ---------------- desktop tab system ---------------- */
+
+const tabStrip = document.getElementById('tab-strip');
+const profileTabEl = document.getElementById('tab-profile');
+const paneBrowse = document.getElementById('pane-browse');
+const paneDetail = document.getElementById('pane-detail');
+
+let openTabsState = [];
+let activeTabId = 'profile';
+
+function isDesktopViewport() {
+  return window.matchMedia('(min-width: 901px)').matches;
+}
+
+function tabIdFor(type, data) {
+  if (type === 'cf') return `cf:${data.url || data.name}`;
+  if (type === 'gh') return `gh:${data.url || data.name}`;
+  return `cert:${data.title || ''}::${data.image || ''}`;
+}
+
+function tabLabelFor(type, data) {
+  if (type === 'cf') return `${truncate(data.name || 'project', 20)}.md`;
+  if (type === 'gh') return `${truncate(data.name || 'repo', 20)}.md`;
+  return `${truncate(data.title || 'certificate', 20)}.png`;
+}
+
+function tabDotClass(type) {
+  if (type === 'cf') return 'dot-json';
+  if (type === 'gh') return 'dot-js';
+  return 'dot-md';
+}
+
+function handleExpand(type, data) {
+  if (isDesktopViewport()) {
+    openDetailTab(type, data);
+    return;
+  }
+  if (type === 'cf') openCfModal(data);
+  else if (type === 'gh') openGhModal(data);
+  else openCertModal(data);
+}
+
+function openDetailTab(type, data) {
+  const id = tabIdFor(type, data);
+  let tab = openTabsState.find((t) => t.id === id);
+  if (!tab) {
+    tab = { id, type, data, label: tabLabelFor(type, data) };
+    openTabsState.push(tab);
+  }
+  setActiveTab(id);
+}
+
+function setActiveTab(id) {
+  activeTabId = id;
+  renderTabStrip();
+  showPane(id);
+
+  const activeEl = id === 'profile' ? profileTabEl : tabStrip.querySelector(`[data-tab-id="${CSS.escape(id)}"]`);
+  if (activeEl) activeEl.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+}
+
+function closeTab(id) {
+  const idx = openTabsState.findIndex((t) => t.id === id);
+  if (idx === -1) return;
+  const [removed] = openTabsState.splice(idx, 1);
+  if (removed.contentEl) removed.contentEl.remove();
+
+  if (activeTabId === id) {
+    const fallback = openTabsState[idx - 1] || openTabsState[0];
+    setActiveTab(fallback ? fallback.id : 'profile');
+  } else {
+    renderTabStrip();
+  }
+}
+
+function renderTabStrip() {
+  [...tabStrip.querySelectorAll('.tab[data-dynamic="true"]')].forEach((t) => t.remove());
+  profileTabEl.classList.toggle('active', activeTabId === 'profile');
+
+  openTabsState.forEach((tab) => {
+    const tabEl = el('div', 'tab' + (tab.id === activeTabId ? ' active' : ''));
+    tabEl.dataset.dynamic = 'true';
+    tabEl.dataset.tabId = tab.id;
+    tabEl.setAttribute('role', 'button');
+    tabEl.setAttribute('tabindex', '0');
+
+    tabEl.append(el('span', `file-dot ${tabDotClass(tab.type)}`));
+    tabEl.append(el('span', 'tab-label', tab.label));
+
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'tab-close';
+    close.textContent = '✕';
+    close.setAttribute('aria-label', `Close ${tab.label}`);
+    close.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeTab(tab.id);
+    });
+    tabEl.append(close);
+
+    tabEl.addEventListener('click', () => setActiveTab(tab.id));
+    tabEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveTab(tab.id);
+      }
+    });
+    // Middle-click (mouse wheel press) closes a tab, matching browser/editor
+    // convention. preventDefault on mousedown stops the browser's autoscroll
+    // cursor from kicking in on the middle-button press.
+    tabEl.addEventListener('mousedown', (e) => {
+      if (e.button === 1) e.preventDefault();
+    });
+    tabEl.addEventListener('auxclick', (e) => {
+      if (e.button === 1) {
+        e.preventDefault();
+        closeTab(tab.id);
+      }
+    });
+
+    tabStrip.append(tabEl);
+  });
+}
+
+function getOrCreateDetailContent(tab) {
+  if (tab.contentEl) return tab.contentEl;
+
+  const container = el('div', 'detail-content');
+  container.hidden = true;
+  container.dataset.tabId = tab.id;
+
+  let fragment;
+  if (tab.type === 'cf') fragment = buildCfDetail(tab.data);
+  else if (tab.type === 'gh') fragment = buildGhDetail(tab.data);
+  else fragment = buildCertDetail(tab.data);
+  container.append(fragment);
+
+  paneDetail.append(container);
+  tab.contentEl = container;
+  return container;
+}
+
+function showPane(id) {
+  const isProfile = id === 'profile';
+  paneBrowse.hidden = !isProfile;
+  paneDetail.hidden = isProfile;
+
+  if (isProfile) return;
+
+  const tab = openTabsState.find((t) => t.id === id);
+  if (!tab) return;
+
+  const content = getOrCreateDetailContent(tab);
+  [...paneDetail.children].forEach((child) => {
+    child.hidden = child !== content;
+  });
+}
+
+profileTabEl.addEventListener('click', () => setActiveTab('profile'));
+profileTabEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    setActiveTab('profile');
+  }
+});
 
 /* ---------------- data loading ---------------- */
 
@@ -451,5 +637,40 @@ async function main() {
   }
 }
 
+/* ---------------- sidebar scrollspy ---------------- */
+
+function setupSidebarNav() {
+  const links = [...document.querySelectorAll('.file-item')];
+  if (!links.length) return;
+
+  const targets = links
+    .map((link) => document.getElementById(link.dataset.target))
+    .filter(Boolean);
+  if (!targets.length) return;
+
+  const setActive = (id) => {
+    links.forEach((link) => link.classList.toggle('active', link.dataset.target === id));
+  };
+
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      if (activeTabId !== 'profile') setActiveTab('profile');
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    },
+    { rootMargin: '-10% 0px -75% 0px', threshold: 0 }
+  );
+
+  targets.forEach((t) => observer.observe(t));
+  setActive(targets[0].id);
+}
+
 main();
 loadCertificates();
+setupSidebarNav();

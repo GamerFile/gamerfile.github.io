@@ -21,18 +21,40 @@
         <span class="dot dot-yellow"></span>
         <span class="dot dot-green"></span>
       </div>
-      <div class="tab">
-        <span class="tab-icon" aria-hidden="true">&lt;/&gt;</span>
-        gamerfile.profile.ts
+      <div class="tab-strip" id="tab-strip">
+        <div class="tab active" id="tab-profile" data-tab-id="profile" role="button" tabindex="0">
+          <span class="tab-icon" aria-hidden="true">&lt;/&gt;</span>
+          <span class="tab-label">gamerfile.profile.ts</span>
+        </div>
       </div>
-      <div class="titlebar-spacer"></div>
     </div>
 
     <div class="editor-body">
-      <main class="pane">
+      <aside class="sidebar" aria-label="File explorer">
+        <div class="sidebar-label">Explorer</div>
+        <nav class="file-tree">
+          <a href="#intro-heading" class="file-item" data-target="intro-heading">
+            <span class="file-dot dot-ts"></span>profile.ts
+          </a>
+          <a href="#stats-heading" class="file-item" data-target="stats-heading">
+            <span class="file-dot dot-json"></span>stats.json
+          </a>
+          <a href="#cf-heading" class="file-item" data-target="cf-heading">
+            <span class="file-dot dot-json"></span>curseforge.json
+          </a>
+          <a href="#gh-heading" class="file-item" data-target="gh-heading">
+            <span class="file-dot dot-js"></span>github.js
+          </a>
+          <a href="#showcase-heading" class="file-item" data-target="showcase-heading">
+            <span class="file-dot dot-md"></span>certificates.md
+          </a>
+        </nav>
+      </aside>
+
+      <main class="pane" id="pane-browse">
 
         <header class="intro">
-          <p class="comment">// developer profile</p>
+          <p class="comment" id="intro-heading">// developer profile</p>
           <h1><span class="kw">const</span> dev = <span class="str">"GamerFile"</span><span class="punct">;</span></h1>
           <p class="tagline">Bedrock addon developer. Building Minecraft mods, tools and small
             utilities in the open.</p>
@@ -82,6 +104,8 @@
         </footer>
 
       </main>
+
+      <div class="detail-pane" id="pane-detail" hidden></div>
     </div>
   </div>
 
@@ -93,7 +117,7 @@
           <span class="dot dot-yellow"></span>
           <span class="dot dot-green"></span>
         </div>
-        <div class="tab">
+        <div class="tab active">
           <span class="tab-icon" aria-hidden="true">&lt;/&gt;</span>
           <span id="modal-title">project.detail.md</span>
         </div>
